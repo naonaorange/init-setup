@@ -1,8 +1,14 @@
 #!/bin/bash
 
+DIST_VER=`lsb_release -rs`
+
 INSSTR=""
 PPASTR=""
 
+
+#################################
+# FUNC
+#################################
 
 insfunc()
 {
@@ -35,6 +41,9 @@ insppa()
 
 
 
+#################################
+# MAIN
+#################################
 
 echo "#############################"
 echo "# PPA"
@@ -46,7 +55,11 @@ insppa libreoffice ppa:libreoffice/ppa
 insppa gimp ppa:otto-kesselgulasch/gimp
 insppa virtualbox ppa:debfx/virtualbox
 
-
+if [ $DIST_VER > 12.03 ]
+then
+  echo "yes"
+  echo $DIST_VER
+fi
 
 echo "#############################"
 echo "# INSTALL"
