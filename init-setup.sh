@@ -55,7 +55,7 @@ insppa libreoffice ppa:libreoffice/ppa
 insppa gimp ppa:otto-kesselgulasch/gimp
 insppa virtualbox ppa:debfx/virtualbox
 
-if [ $DIST_VER > 12.03 ]
+if [ 'echo "$DIST_VER >= 12.04" | bc' == 1 ]
 then
   echo "yes"
   echo $DIST_VER
@@ -91,16 +91,16 @@ echo $INSSTR
 echo "Are you OK?? (y/n)"
 read TMP
 
-if [ $TMP == "y" -o $TMP == "yes" ]
-then
-  sudo apt-add-repository $PPASTR
-
-  echo "PPA finish!!"
-
-  sudo apt-get update
-  yes | sudo apt-get install $INSSTR
-
-  echo "#############################"
-  echo "# PPA and Install Success!!"
-  echo "#############################"
-fi
+#if [ $TMP == "y" -o $TMP == "yes" ]
+#then
+#  sudo apt-add-repository $PPASTR
+#
+#  echo "PPA finish!!"
+#
+#  sudo apt-get update
+#  yes | sudo apt-get install $INSSTR
+#
+#  echo "#############################"
+#  echo "# PPA and Install Success!!"
+#  echo "#############################"
+#fi
