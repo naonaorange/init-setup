@@ -91,16 +91,17 @@ echo $INSSTR
 echo "Are you OK?? (y/n)"
 read TMP
 
-#if [ $TMP == "y" -o $TMP == "yes" ]
-#then
-#  sudo apt-add-repository $PPASTR
-#
-#  echo "PPA finish!!"
-#
-#  sudo apt-get update
-#  yes | sudo apt-get install $INSSTR
-#
-#  echo "#############################"
-#  echo "# PPA and Install Success!!"
-#  echo "#############################"
-#fi
+
+if [ $TMP == "y" -o $TMP == "yes" ]
+then
+  for PPA in $PPASTR
+  do
+    sudo add-apt-repository $PPA
+  done
+
+  sudo apt-get install $INSSTR
+
+  echo "#############################"
+  echo "# PPA and Install Success!!"
+  echo "#############################"
+fi
