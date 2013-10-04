@@ -55,10 +55,10 @@ insppa libreoffice ppa:libreoffice/ppa
 insppa gimp ppa:otto-kesselgulasch/gimp
 insppa virtualbox ppa:debfx/virtualbox
 
-if [ 'echo "$DIST_VER >= 12.04" | bc' == 1 ]
+if [ `echo "$DIST_VER >= 12.04" | bc` == 1 ]
 then
-  echo "yes"
-  echo $DIST_VER
+  insppa indicator-multiload ppa:indicator-multiload/stable-daily
+  insppa indicator-sensors ppa:alexmurray/indicator-sensors
 fi
 
 echo "#############################"
