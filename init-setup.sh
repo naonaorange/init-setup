@@ -49,12 +49,18 @@ echo "#############################"
 echo "# Home直下を英語にする"
 echo "#############################"
 
-echo "Are you OK?? (y/n)"
+echo "Are you OK ?? (y/n)"
 read TMP
 
 if [ $TMP == "y" -o $TMP == "yes" ]
 then
-  LANG=C xdg-user-dirs-gtk-update 
+  echo "Really ?? (y/n)"
+  read TMP
+
+  if [ $TMP == "y" -o $TMP == "yes" ]
+  then
+    LANG=C xdg-user-dirs-gtk-update 
+  fi
 fi
 
 
