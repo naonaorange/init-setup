@@ -5,6 +5,7 @@ DIST_VER=`lsb_release -rs`
 INSSTR=""
 PPASTR=""
 
+PPAFLAG=false
 
 #################################
 # FUNC
@@ -36,6 +37,7 @@ insppa()
   INSSTR="$INSSTR $1"
   echo $PPASTR
   echo ""
+  PPAFLAG=true
   fi
 }
 
@@ -68,7 +70,7 @@ echo "#############################"
 echo "# PPA"
 echo "#############################"
 
-insppa ubuntu-default-ja ppa:japaneseteam/ppa
+insppa ubuntu-defaults-ja ppa:japaneseteam/ppa
 insppa firefox ppa:mozillateam/firefox-next
 insppa libreoffice ppa:libreoffice/ppa
 insppa gimp ppa:otto-kesselgulasch/gimp
@@ -113,11 +115,18 @@ read TMP
 
 if [ $TMP == "y" -o $TMP == "yes" ]
 then
-  for PPA in $PPASTR
-  do
-    sudo add-apt-repository $PPA
-  done
 
+  if [ $PPAFLAG == true ]
+  then
+    echo "PPAFLAG is true"
+    for PPA in $PPASTR
+    do
+      sudo add-apt-repository $PPA
+      #sleep 1s
+    done
+  fi
+  
+  sudo apt-get update
   sudo apt-get install $INSSTR
 
   echo "#############################"
