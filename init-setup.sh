@@ -93,10 +93,11 @@ insfunc trash-cli
 insfunc synaptic
 insfunc chromium-browser
 insfunc midori
-insfunc openssh-srver
+insfunc openssh-server
 insfunc gparted
 insfunc ibus-mozc
 insfunc gdebi
+insfunc git
 
 
 echo "#############################"
@@ -127,6 +128,7 @@ then
   fi
   
   sudo apt-get update
+  sleep 1s
   sudo apt-get install $INSSTR
 
   echo "#############################"
