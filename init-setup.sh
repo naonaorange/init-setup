@@ -97,7 +97,7 @@ insfunc openssh-server
 insfunc gparted
 insfunc ibus-mozc
 insfunc gdebi
-insfunc git
+insfunc nautilus-dropbox
 
 
 echo "#############################"
