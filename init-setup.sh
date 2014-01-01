@@ -11,7 +11,7 @@ PPAFLAG=false
 # FUNC
 #################################
 
-insfunc()
+insFunc()
 {
   
   echo "Do you install =>> $1 ? (y/n)"
@@ -26,7 +26,7 @@ insfunc()
 
 }
 
-insppa()
+insPPA()
 {
   echo "Do you add ppa repository =>> $1 ? (y/n)" 
   read TMP
@@ -40,7 +40,6 @@ insppa()
   PPAFLAG=true
   fi
 }
-
 
 
 #################################
@@ -70,34 +69,34 @@ echo "#############################"
 echo "# PPA"
 echo "#############################"
 
-insppa ubuntu-defaults-ja ppa:japaneseteam/ppa
-insppa firefox ppa:mozillateam/firefox-next
-insppa libreoffice ppa:libreoffice/ppa
-insppa gimp ppa:otto-kesselgulasch/gimp
-insppa virtualbox ppa:debfx/virtualbox
+insPPA ubuntu-defaults-ja ppa:japaneseteam/ppa
+insPPA firefox ppa:mozillateam/firefox-next
+insPPA libreoffice ppa:libreoffice/ppa
+insPPA gimp ppa:otto-kesselgulasch/gimp
+#insPPA virtualbox ppa:debfx/virtualbox
 
 if [ `echo "$DIST_VER >= 12.04" | bc` == 1 ]
 then
-  insppa indicator-multiload ppa:indicator-multiload/stable-daily
-  insppa indicator-sensors ppa:alexmurray/indicator-sensors
+  insPPA indicator-multiload ppa:indicator-multiload/stable-daily
+  insPPA indicator-sensors ppa:alexmurray/indicator-sensors
 fi
 
 echo "#############################"
 echo "# INSTALL"
 echo "#############################"
 
-insfunc vim
-insfunc vim-gnome
-insfunc terminator
-insfunc trash-cli
-insfunc synaptic
-insfunc chromium-browser
-insfunc midori
-insfunc openssh-server
-insfunc gparted
-insfunc ibus-mozc
-insfunc gdebi
-insfunc nautilus-dropbox
+insFunc vim
+insFunc vim-gnome
+insFunc terminator
+insFunc trash-cli
+insFunc synaptic
+insFunc chromium-browser
+insFunc midori
+insFunc openssh-server
+insFunc gparted
+insFunc ibus-mozc
+insFunc gdebi
+insFunc nautilus-dropbox
 
 
 echo "#############################"
@@ -119,7 +118,6 @@ then
 
   if [ $PPAFLAG == true ]
   then
-    echo "PPAFLAG is true"
     for PPA in $PPASTR
     do
       sudo add-apt-repository $PPA
