@@ -13,7 +13,6 @@ PPAFLAG=false
 
 insFunc()
 {
-  
   echo "Do you install =>> $1 ? (y/n)"
   read TMP
 
@@ -23,7 +22,6 @@ insFunc()
   echo $INSSTR
   echo ""
   fi
-
 }
 
 insPPA()
@@ -112,14 +110,12 @@ insPPA ubuntu-defaults-ja ppa:japaneseteam/ppa
 insPPA firefox ppa:mozillateam/firefox-next
 insPPA libreoffice ppa:libreoffice/ppa
 insPPA gimp ppa:otto-kesselgulasch/gimp
-#insPPA virtualbox ppa:debfx/virtualbox
 
 if [ `echo "$DIST_VER >= 12.04" | bc` == 1 ]
 then
   insPPA indicator-multiload ppa:indicator-multiload/stable-daily
   insPPA indicator-sensors ppa:alexmurray/indicator-sensors
 fi
-
 
 echo "#############################"
 echo "# edit the sourceslist.d"
@@ -157,7 +153,6 @@ echo $INSSTR
 
 echo "Are you OK?? (y/n)"
 read TMP
-
 
 if [ $TMP == "y" -o $TMP == "yes" ]
 then
