@@ -81,6 +81,29 @@ then
 fi
 
 
+if [ `echo "$DIST_VER >= 14.04" | bc` == 1 ]
+then
+  echo "#############################"
+  echo "# CapslockをCtrlとする"
+  echo "#############################"
+
+  echo "Are you OK ?? (y/n)"
+  read TMP
+
+  if [ $TMP == "y" -o $TMP == "yes" ]
+  then
+    echo "Really ?? (y/n)"
+    read TMP
+
+    if [ $TMP == "y" -o $TMP == "yes" ]
+    then
+      #Ref of https://wiki.ubuntulinux.jp/UbuntuTips/Desktop/HowToSetCapsLockAsCtrl
+      dconf reset /org/gnome/settings-daemon/plugins/keyboard/active
+      dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
+    fi
+  fi
+fi
+
 echo "#############################"
 echo "# PPA"
 echo "#############################"
