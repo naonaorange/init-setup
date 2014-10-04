@@ -136,7 +136,7 @@ insFunc chromium-browser
 insFunc midori
 insFunc openssh-server
 insFunc gparted
-insFunc ibus-mozc
+#insFunc ibus-mozc
 insFunc gdebi
 insFunc nautilus-dropbox
 
