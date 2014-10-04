@@ -111,7 +111,7 @@ insPPA firefox ppa:mozillateam/firefox-next
 insPPA libreoffice ppa:libreoffice/ppa
 insPPA gimp ppa:otto-kesselgulasch/gimp
 
-if [ `echo "$DIST_VER >= 12.04" | bc` == 1 ]
+if [ `echo "$DIST_VER <= 12.04" | bc` == 1 ]
 then
   insPPA indicator-multiload ppa:indicator-multiload/stable-daily
   insPPA indicator-sensors ppa:alexmurray/indicator-sensors
