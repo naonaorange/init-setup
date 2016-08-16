@@ -11,29 +11,26 @@ PPAFLAG=false
 # FUNC
 #################################
 
-insFunc()
+askIfInstall()
 {
-  echo "Do you install =>> $1 ? (y/n)"
+  echo "Do you want to install =>> $1 ? (y/n)"
   read TMP
-
   if [ $TMP == "y" -o $TMP == "yes" ]
   then
   INSSTR="$INSSTR $1"
-  echo $INSSTR
   echo ""
   fi
 }
 
-insPPA()
+askIfAddPPA()
 {
-  echo "Do you add ppa repository =>> $1 ? (y/n)" 
+  echo "Do you want to add PPA repository =>> $1 ? (y/n)" 
   read TMP
 
   if [ $TMP == "y" -o $TMP == "yes" ]
   then
   PPASTR="$PPASTR $2"
   INSSTR="$INSSTR $1"
-  echo $PPASTR
   echo ""
   PPAFLAG=true
   fi
@@ -44,93 +41,61 @@ insPPA()
 #################################
 
 echo "#############################"
-echo "# Home直下を英語にする"
+echo "# Write home folder in english."
 echo "#############################"
 
 echo "Are you OK ?? (y/n)"
 read TMP
-
 if [ $TMP == "y" -o $TMP == "yes" ]
 then
-  echo "Really ?? (y/n)"
-  read TMP
-
-  if [ $TMP == "y" -o $TMP == "yes" ]
-  then
-    LANG=C xdg-user-dirs-gtk-update 
-  fi
-fi
-
-
-if [ `echo "$DIST_VER >= 14.04" | bc` == 1 ]
-then
-  echo "#############################"
-  echo "# CapslockをCtrlとする"
-  echo "#############################"
-
-  echo "Are you OK ?? (y/n)"
-  read TMP
-
-  if [ $TMP == "y" -o $TMP == "yes" ]
-  then
-    echo "Really ?? (y/n)"
-    read TMP
-
-    if [ $TMP == "y" -o $TMP == "yes" ]
-    then
-      #Ref of https://wiki.ubuntulinux.jp/UbuntuTips/Desktop/HowToSetCapsLockAsCtrl
-      dconf reset /org/gnome/settings-daemon/plugins/keyboard/active
-      dconf write /org/gnome/desktop/input-sources/xkb-options "['ctrl:nocaps']"
-    fi
-  fi
+  LANG=C xdg-user-dirs-gtk-update 
 fi
 
 echo "#############################"
-echo "# PPA"
+echo "# Construct japanese environment."
 echo "#############################"
 
-insPPA ubuntu-defaults-ja ppa:japaneseteam/ppa
-#insPPA firefox ppa:mozillateam/firefox-next
-#insPPA libreoffice ppa:libreoffice/ppa
-#insPPA gimp ppa:otto-kesselgulasch/gimp
-
-if [ `echo "$DIST_VER <= 12.04" | bc` == 1 ]
+echo "Are you OK ?? (y/n)"
+read TMP
+if [ $TMP == "y" -o $TMP == "yes" ]
 then
-  insPPA indicator-multiload ppa:indicator-multiload/stable-daily
-  insPPA indicator-sensors ppa:alexmurray/indicator-sensors
+  wget -q https://www.ubuntulinux.jp/ubuntu-ja-archive-keyring.gpg -O- | sudo apt-key add -
+  wget -q https://www.ubuntulinux.jp/ubuntu-jp-ppa-keyring.gpg -O- | sudo apt-key add -
+  sudo wget https://www.ubuntulinux.jp/sources.list.d/xenial.list -O /etc/apt/sources.list.d/ubuntu-ja.list
+  askIfInstall ubuntu-default-ja
 fi
+
+#echo "#############################"
+#echo "# PPA"
+#echo "#############################"
+#askIfAddPPA ubuntu-defaults-ja ppa:japaneseteam/ppa
 
 echo "#############################"
 echo "# INSTALL"
 echo "#############################"
-
-insFunc vim
-insFunc vim-gnome
-insFunc terminator
-insFunc trash-cli
-insFunc synaptic
-insFunc chromium-browser
-insFunc midori
-insFunc openssh-server
-insFunc gparted
-#insFunc ibus-mozc
-insFunc gdebi
-insFunc nautilus-dropbox
-
+askIfInstall vim
+askIfInstall vim-gnome
+askIfInstall terminator
+askIfInstall trash-cli
+askIfInstall synaptic
+#askIfInstall chromium-browser
+#askIfInstall midori
+askIfInstall openssh-server
+askIfInstall gparted
+askIfInstall gdebi
+askIfInstall nautilus-dropbox
+askIfInstall gnome-tweak-tool
 
 echo "#############################"
 echo "# RESULT"
 echo "#############################"
 
-echo "PPASTR = "
-echo $PPASTR
+echo "Add PPA repository = $PPASTR"
 echo ""
-echo "INSSTR = "
-echo $INSSTR
+echo "Install software = $INSSTR"
 
 echo "Are you OK?? (y/n)"
 read TMP
-
 if [ $TMP == "y" -o $TMP == "yes" ]
 then
 
@@ -148,6 +113,6 @@ then
   sudo apt-get install $INSSTR
 
   echo "#############################"
-  echo "# PPA and Install Success!!"
+  echo "# Install Success!!"
   echo "#############################"
 fi

@@ -8,5 +8,5 @@ nao-init-setup
 
 動作環境
 =========
-Ubuntu 12.04 以上
+Ubuntu 16.04
 
