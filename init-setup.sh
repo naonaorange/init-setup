@@ -39,23 +39,6 @@ insPPA()
   fi
 }
 
-#insSourceslist()
-#{
-#  echo "Do you add sourceslist.d repository =>> $1 ? (y/n)" 
-#  read TMP
-#
-#  if [ $TMP == "y" -o $TMP == "yes" ]
-#  then
-#    echo "$2" | sudo tee /etc/apt/sources.list.d/$1.list
-#    INSSTR="$INSSTR $1"
-#
-#    if [ `echo "$# >= 3" | bc` == 1 ]
-#    then
-#      sh -c '$3'
-#    fi
-#  fi
-#}
-
 #################################
 # MAIN
 #################################
@@ -116,12 +99,6 @@ then
   insPPA indicator-multiload ppa:indicator-multiload/stable-daily
   insPPA indicator-sensors ppa:alexmurray/indicator-sensors
 fi
-
-#echo "#############################"
-#echo "# edit the sourceslist.d"
-#echo "#############################"
-#insSourceslist virtualbox-4.3 "deb http://download.virtualbox.org/virtualbox/debian $(lsb_release -sc) contrib" "wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -"
-
 
 echo "#############################"
 echo "# INSTALL"
