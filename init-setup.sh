@@ -65,7 +65,7 @@ then
   sleep 1s
   sudo wget https://www.ubuntulinux.jp/sources.list.d/xenial.list -O /etc/apt/sources.list.d/ubuntu-ja.list
   sleep 1s
-  askIfInstall ubuntu-default-ja
+  askIfInstall ubuntu-defaults-ja
 fi
 
 #echo "#############################"
