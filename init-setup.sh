@@ -40,9 +40,9 @@ askIfAddPPA()
 # MAIN
 #################################
 
-echo "#############################"
+echo "#################################"
 echo "# Write home folder in english."
-echo "#############################"
+echo "#################################"
 
 echo "Are you OK ?? (y/n)"
 read TMP
@@ -51,9 +51,9 @@ then
   LANG=C xdg-user-dirs-gtk-update 
 fi
 
-echo "#############################"
+echo "#################################"
 echo "# Construct japanese environment."
-echo "#############################"
+echo "#################################"
 
 echo "Are you OK ?? (y/n)"
 read TMP
@@ -64,6 +64,18 @@ then
   sudo wget https://www.ubuntulinux.jp/sources.list.d/xenial.list -O /etc/apt/sources.list.d/ubuntu-ja.list
   askIfInstall ubuntu-default-ja
 fi
+
+echo "#####################################################"
+echo "# Enable to set local RTC(for dual boot environment)."
+echo "#####################################################"
+
+echo "Are you OK ?? (y/n)"
+read TMP
+if [ $TMP == "y" -o $TMP == "yes" ]
+then
+  timedatectl set-local-rtc 1
+fi
+
 
 #echo "#############################"
 #echo "# PPA"
